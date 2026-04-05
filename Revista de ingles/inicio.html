@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Changing World — Magazine</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #2d6a4f;
+    --green-light: #52b788;
+    --green-pale: #d8f3dc;
+    --green-dark: #1b4332;
+    --amber: #b5451b;
+    --amber-light: #f4a261;
+    --cream: #fdf6ec;
+    --cream-dark: #f5e6cc;
+    --ink: #1a1a1a;
+    --ink-mid: #3d3d3d;
+    --ink-muted: #6b6b6b;
+    --white: #ffffff;
+    --border: rgba(0,0,0,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+
+  .cover {
+    min-height: 100vh;
+    background: var(--green-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 3rem 2rem;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 60px,
+      rgba(255,255,255,0.02) 60px,
+      rgba(255,255,255,0.02) 61px
+    );
+  }
+
+  .cover-badge {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--green-light);
+    border: 1px solid var(--green-light);
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.8s ease forwards;
+    opacity: 0;
+  }
+
+  .cover h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 700;
+    color: var(--white);
+    text-align: center;
+    line-height: 1.05;
+    animation: fadeUp 0.8s 0.2s ease forwards;
+    opacity: 0;
+  }
+
+  .cover h1 em {
+    font-style: italic;
+    color: var(--green-light);
+  }
+
+  .cover-sub {
+    font-family: 'Source Serif 4', serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.65);
+    margin-top: 1.5rem;
+    text-align: center;
+    animation: fadeUp 0.8s 0.4s ease forwards;
+    opacity: 0;
+  }
+
+  .cover-issue {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 3rem;
+    animation: fadeUp 0.8s 0.6s ease forwards;
+    opacity: 0;
+  }
+
+  .cover-animals {
+    display: flex;
+    gap: 2rem;
+    margin-top: 3rem;
+    animation: fadeUp 0.8s 0.5s ease forwards;
+    opacity: 0;
+  }
+
+  .cover-animal-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    transition: transform 0.3s;
+    cursor: default;
+  }
+
+  .cover-animal-icon:hover { transform: scale(1.1) rotate(-5deg); }
+
+  .scroll-cue {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+    color: rgba(255,255,255,0.4);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+
+  .page-section {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0;
+  }
+
+
+  .toc-section {
+    background: var(--white);
+    padding: 4rem 2rem;
+  }
+
+  .toc-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 2.5rem;
+  }
+
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .toc-item {
+    background: var(--white);
+    padding: 1.5rem;
+    transition: background 0.2s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .toc-item:hover { background: var(--cream); }
+
+  .toc-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--green-pale);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .toc-item-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.4;
+    margin-bottom: 4px;
+  }
+
+  .toc-item-desc {
+    font-size: 13px;
+    color: var(--ink-muted);
+    font-family: 'DM Sans', sans-serif;
+  }
+
+
+  .glossary-section { background: var(--cream); }
+
+  .animal-category {
+    margin-bottom: 3rem;
+  }
+
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .category-badge {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 14px;
+    border-radius: 20px;
+    background: var(--green);
+    color: white;
+    letter-spacing: 0.05em;
+  }
+
+  .category-badge.herb { background: #52b788; }
+  .category-badge.omni { background: var(--amber); }
+  .category-badge.mamm { background: #5e548e; }
+
+  .category-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .animals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .animal-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+  }
+
+  .animal-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+
+  .animal-emoji-box {
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 56px;
+    background: var(--cream);
+    transition: transform 0.3s;
+  }
+
+  .animal-card:hover .animal-emoji-box { transform: scale(1.08); }
+
+  .animal-info {
+    padding: 0.75rem 1rem;
+  }
+
+  .animal-name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .animal-diet {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    color: var(--ink-muted);
+    margin-top: 2px;
+  }
+
+  .animal-panel {
+    display: none;
+    padding: 0.75rem 1rem;
+    background: var(--green-pale);
+    border-top: 1px solid rgba(0,0,0,0.06);
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--green-dark);
+  }
+
+  .animal-card.open .animal-panel { display: block; }
+
+  .animal-panel .fun-fact {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 4px;
+  }
+
+  .article-section {
+    background: var(--white);
+    border-top: 4px solid var(--green);
+  }
+
+  .article-section.alt { background: var(--cream); border-top-color: var(--amber); }
+
+  .article-header {
+    margin-bottom: 2rem;
+  }
+
+  .grammar-tag {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 4px;
+    background: var(--green-pale);
+    color: var(--green-dark);
+    margin-bottom: 1rem;
+  }
+
+  .grammar-tag.past { background: #fde8d0; color: #7a2e0e; }
+  .grammar-tag.cont { background: #e8d5f5; color: #4a1d70; }
+  .grammar-tag.stative { background: #d0e8fd; color: #0e3c7a; }
+
+  .article-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .article-byline {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+
+  .article-lead {
+    font-size: 1.15rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ink-mid);
+    border-left: 3px solid var(--green);
+    padding-left: 1.25rem;
+    margin: 1.5rem 0;
+    line-height: 1.8;
+  }
+
+  .article-body p {
+    margin-bottom: 1.25rem;
+    font-size: 1rem;
+    line-height: 1.85;
+  }
+
+  .article-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 2rem 0 0.75rem;
+    color: var(--green-dark);
+  }
+
+  .pullquote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--green);
+    border-top: 2px solid var(--green);
+    border-bottom: 2px solid var(--green);
+    padding: 1.25rem 0;
+    margin: 2rem 0;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+ 
+  .interactive-card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 2rem 0;
+    background: var(--white);
+  }
+
+  .img-placeholder {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    font-size: 64px;
+  }
+
+  .img-placeholder:hover { opacity: 0.9; }
+
+  .img-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.85);
+    margin-top: 0.5rem;
+  }
+
+  .img-click-hint {
+    position: absolute;
+    bottom: 10px;
+    right: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    color: rgba(255,255,255,0.65);
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 3px 8px;
+    border-radius: 10px;
+  }
+
+  .img-data-panel {
+    display: none;
+    padding: 1.25rem;
+    background: var(--cream);
+    border-top: 1px solid var(--border);
+  }
+
+  .img-data-panel.open { display: block; }
+
+  .data-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .data-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--green);
+    min-width: 90px;
+  }
+
+  .data-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.4;
+  }
+
+  .panel-btn {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border: 1px solid var(--green);
+    border-radius: 6px;
+    color: var(--green);
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .panel-btn:hover { background: var(--green); color: white; }
+
+
+  .vocab-word {
+    border-bottom: 2px dotted var(--green);
+    cursor: help;
+    position: relative;
+  }
+
+  .opinion-section { background: var(--green-dark); color: var(--cream); }
+
+  .opinion-section .section-label { color: var(--green-light); }
+  .opinion-section .section-title { color: var(--white); }
+  .opinion-section .article-lead { border-left-color: var(--green-light); color: rgba(255,255,255,0.75); }
+  .opinion-section .article-body p { color: rgba(255,255,255,0.85); }
+  .opinion-section .article-body h3 { color: var(--green-light); }
+  .opinion-section .pullquote { color: var(--green-light); border-top-color: var(--green-light); border-bottom-color: var(--green-light); }
+
+
+  .webgraphy-section {
+    background: var(--cream-dark);
+    border-top: 1px solid var(--border);
+  }
+
+  .ref-list {
+    list-style: none;
+    counter-reset: refs;
+  }
+
+  .ref-item {
+    counter-increment: refs;
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 0.75rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+
+  .ref-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--green-pale);
+    line-height: 1;
+  }
+
+  .ref-content {}
+
+  .ref-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+
+  .ref-org {
+    font-size: 12px;
+    color: var(--ink-muted);
+    font-family: 'DM Sans', sans-serif;
+    margin-bottom: 4px;
+  }
+
+  .ref-url {
+    font-size: 12px;
+    color: var(--green);
+    word-break: break-all;
+    font-family: 'DM Sans', sans-serif;
+    text-decoration: none;
+  }
+
+  .ref-url:hover { text-decoration: underline; }
+
+
+  .footer {
+    background: var(--green-dark);
+    color: rgba(255,255,255,0.45);
+    padding: 2rem;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+  }
+
+
+  .sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(27,67,50,0.95);
+    backdrop-filter: blur(8px);
+    padding: 0.75rem 2rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .sticky-nav::-webkit-scrollbar { display: none; }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--green-light);
+    white-space: nowrap;
+    margin-right: 0.5rem;
+  }
+
+  .nav-link {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+
+  .nav-link:hover { color: var(--green-light); }
+
+
+  .data-bar-wrap {
+    margin: 0.5rem 0;
+  }
+
+  .data-bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: var(--ink-muted);
+    margin-bottom: 4px;
+  }
+
+  .data-bar-track {
+    height: 6px;
+    background: var(--cream-dark);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .data-bar-fill {
+    height: 100%;
+    background: var(--green);
+    border-radius: 3px;
+    width: 0;
+    transition: width 1s ease;
+  }
+
+  @media (max-width: 600px) {
+    .animals-grid { grid-template-columns: repeat(2, 1fr); }
+    .toc-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+
+<section class="cover" id="cover">
+  
+  <h1>Our <em>Changing</em><br>World</h1>
+  
+  <div class="cover-animals">
+    <div class="cover-animal-icon">🦁</div>
+    <div class="cover-animal-icon">🐘</div>
+    <div class="cover-animal-icon">🦅</div>
+    <div class="cover-animal-icon">🐢</div>
+    <div class="cover-animal-icon">🐺</div>
+  </div>
+  <p class="cover-issue">Project 10 · Grade 10 English · Wild Animals &amp; Their Habitats</p>
+  <div class="scroll-cue">▼ scroll to explore</div>
+</section>
+
+
+<nav class="sticky-nav">
+  <span class="nav-logo">Our Changing World</span>
+  <a class="nav-link" href="#toc">Contents</a>
+  <a class="nav-link" href="#glossary">Glossary</a>
+  <a class="nav-link" href="#article1">Article 1</a>
+  <a class="nav-link" href="#article2">Article 2</a>
+  <a class="nav-link" href="#article3">Article 3</a>
+  <a class="nav-link" href="#opinion">Opinion</a>
+  <a class="nav-link" href="#webgraphy">Webgraphy</a>
+</nav>
+
+
+<section class="toc-section" id="toc">
+  <div class="toc-inner">
+    <p class="section-label">Inside this issue</p>
+    <h2 class="section-title">Table of Contents</h2>
+    <div class="toc-grid">
+      <a class="toc-item" href="#glossary">
+        <div class="toc-num">01</div>
+        <div class="toc-item-title">Illustrated Glossary</div>
+        <div class="toc-item-desc">24 animals — carnivores, herbivores, omnivores &amp; mammals</div>
+      </a>
+      <a class="toc-item" href="#article1">
+        <div class="toc-num">02</div>
+        <div class="toc-item-title">Wild Animals &amp; Their Habitats</div>
+        <div class="toc-item-desc">Informative article · Present Simple</div>
+      </a>
+      <a class="toc-item" href="#article2">
+        <div class="toc-num">03</div>
+        <div class="toc-item-title">When the Forests Fell Silent</div>
+        <div class="toc-item-desc">Narrative of past change · Simple Past</div>
+      </a>
+      <a class="toc-item" href="#article3">
+        <div class="toc-num">04</div>
+        <div class="toc-item-title">While the Ice Was Melting</div>
+        <div class="toc-item-desc">Ongoing event · Past Continuous + when/while</div>
+      </a>
+      <a class="toc-item" href="#opinion">
+        <div class="toc-num">05</div>
+        <div class="toc-item-title">We Owe This Planet a Debt</div>
+        <div class="toc-item-desc">Opinion column · Stative verbs</div>
+      </a>
+      <a class="toc-item" href="#webgraphy">
+        <div class="toc-num">06</div>
+        <div class="toc-item-title">Webgraphy</div>
+        <div class="toc-item-desc">Sources &amp; further reading from leading institutions</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+
+<section id="glossary">
+<div class="page-section glossary-section">
+  <p class="section-label">Page 1 — Illustrated Glossary</p>
+  <h2 class="section-title">Wild Animals of Our World</h2>
+  <p style="font-family:'DM Sans',sans-serif;font-size:14px;color:var(--ink-muted);margin-bottom:2.5rem;">Click on any animal card to reveal its description and a fun fact.</p>
+
+
+  <div class="animal-category">
+    <div class="category-header">
+      <span class="category-badge">Carnivores</span>
+      <div class="category-line"></div>
+    </div>
+    <div class="animals-grid">
+      <div class="animal-card" onclick="toggleCard(this)">
+        <div class="animal-emoji-box" style="background:#fde8d8;">🦁</div>
+        <div class="animal-info">
+          <div class="animal-name">Lion</div>
+          <div class="animal-diet">Panthera leo</div>
+        </div>
+        <div class="animal-panel"><div class="fun-fact">🔎 Fun Fact</div>Lions are the only social big cats. They live in groups called <em>prides</em> of up to 30 individuals. They hunt large prey like zebras and wildebeest on African savannahs. Only females do most of the hunting while males guard the territory.</div>
+      </div>
+      <div class="animal-card" onclick="toggleCard(this)">
+        <div class="animal-emoji-box" style="background:#e8f4fd;">🦈</div>
+        <div class="animal-info">
+          <div class="animal-name">Great White Shark</div>
+          <div class="animal-diet">Carcharodon carcharias</div>
+        </div>
+        <div class="animal-panel"><div class="fun-fact">🔎 Fun Fact</div>Great white sharks can detect one drop of blood in 100 litres of water. They are apex predators of the ocean and can grow up to 6 metres long. They play a vital role in keeping ocean ecosystems balanced.</div>
+      </div>
+      <div class="animal-card" onclick="toggleCard(this)">
+        <div class="animal-emoji-box" style="background:#fdf4d0;">🐆</div>
+        <div class="animal-info">
+          <div class="animal-name">Cheetah</div>
+          <div class="animal-diet">Acinonyx jubatus</div>
+        </div>
+        <div class="animal-panel"><div class="fun-fact">🔎 Fun Fact</div>The cheetah is the fastest land animal on Earth, reaching speeds of up to 112 km/h in short bursts. Unlike other big cats, it cannot roar — it chirps and purrs instead. It is currently classified as vulnerable.</div>
+      </div>
+      <div class="animal-card" onclick="toggleCard(this)">
+        <div class="animal-emoji-box" style="background:#f0e8fd;">🦅</div>
+        <div class="animal-info">
+          <div class="animal-name">Bald Eagle</div>
+          <div class="animal-diet">Haliaeetus leucocephalus</div>
+        </div>
+        <div class="animal-panel"><div class="fun-fact">🔎 Fun Fact</div>Bald eagles have eyesight 4 to 8 times stronger than humans. They live near large bodies of open water and feed mainly on fish. They build the largest nests of any bird in North America — sometimes weighing over 1,000 kg.</div>
+      </div>
+      <div class="animal-card" onclick="toggleCard(this)">
+        <div class="animal-emoji-box" style="background:#e8fdf0;">🐊</div>
+        <div class="animal-info">
+          <div class="animal-name">Nile Crocodile</div>
+          <div class="animal-diet">Crocodylus niloticus</div>
+        </div>
+        <div class="animal-panel"><div class="fun-fact">🔎 Fun Fact</div>Nile crocodiles are among the most feared predators in Africa. They can hold their breath underwater for up to 2 hours. Despite their fearsome reputation, crocodile mothers carry their babies gently in their mouths to the water.</div>
+      </div>
+      <div class="animal-card" onclick="toggleCard(this)">
+        <div class="animal-emoji-box" style="background:#fde8e8;">🐺</div>
+        <div class="animal-info">
+          <div class="animal-name">Gray Wolf</div>
+          <div class="animal-diet">Canis lupus</div>
+        </div>
+        <div class="animal-panel"><div class="fun-fact">🔎 Fun Fact</div>Gray wolves are keystone species — their presence shapes entire ecosystems. When wolves were reintroduced to Yellowstone National Park in 1995, their hunting of deer caused vegetation to recover along rivers, changing the course of rivers themselves.</div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="animal-category">
+    <div class="category-header">
+      <span class="category-badge herb">Herbivores</span>
+      <div class="category-line"></div>
+    </div>
+    <div class="animals-grid">
+      <div class="animal-card" onclick="toggleCard(this)">
+        <div class="animal-emoji-box" style="background:#e8f5e8;">🦒</div>
+        <div class="animal-info">
+          <div class="animal-name">Giraffe</div>
+          <div class="animal-diet">Giraffa camelopardalis</div>
+        </div>
+        <div class="animal-panel"><div class="fun-fact">🔎 Fun Fact</div>Giraffes are the tallest living land animals on Earth. Their long necks allow them to reach leaves high in acacia trees. They only sleep about 30 minutes per day and can go longer without water than camels.</div>
+      </div>
+      <div class="animal-card" onclick="toggleCard(this)">
+        <div class="animal-emoji-box" style="background:#f5f0e8;">🦏</div>
+        <div class="animal-info">
+          <div class="animal-name">White Rhinoceros</div>
+          <div class="animal-diet">Ceratotherium simum</div>
+        </div>
+        <div class="animal-panel"><div class="fun-fact">🔎 Fun Fact</div>White rhinos are the second-largest land animals after elephants. They are near-sighted but have an excellent sense of smell. Sadly, rhinos are critically threatened by poaching for their horns, which are illegally sold in some markets.</div>
+      </div>
+      <div class="animal-card" onclick="toggleCard(this)">
+        <div class="animal-emoji-box" style="background:#edf5e8;">🦘</div>
+        <div class="animal-info">
+          <div class="animal-name">Kangaroo</div>
+          <div class="animal-diet">Macropus rufus</div>
+        </div>
+        <div class="animal-panel"><div class="fun-fact">🔎 Fun Fact</div>Kangaroos live in Australia and feed on grass, herbs and shrubs. They carry their young (called joeys) in a pouch on their belly. They can jump up to 9 metres in a single leap and reach speeds of 56 km/h.</div>
+      </div>
+      <div class="animal-card" onclick="toggleCard(this)">
+        <div class="animal-emoji-box" style="background:#e8eef5;">🐘</div>
+        <div class="animal-info">
+          <div class="animal-name">African Elephant</div>
+          <div class="animal-diet">Loxodonta africana</div>
+        </div>
+        <div class="animal-panel"><div class="fun-fact">🔎 Fun Fact</div>African elephants are the largest land animals alive. They eat up to 300 kg of vegetation per day. Elephants are considered ecosystem engineers because they open up forest clearings and dig for water during droughts, helping countless other species survive.</div>
+      </div>
+      <div class="animal-card" onclick="toggleCard(this)">
+        <div class="animal-emoji-box" style="background:#f5ede8;">🦬</div>
+        <div class="animal-info">
+          <div class="animal-name">American Bison</div>
+          <div class="animal-diet">Bison bison</div>
+        </div>
+        <div class="animal-panel"><div class="fun-fact">🔎 Fun Fact</div>Bison once roamed the North American plains in herds of millions. By the late 1800s, they were nearly extinct due to overhunting. Today, conservation efforts have brought their numbers back from under 1,000 to over 500,000.</div>
+      </div>
+      <div class="animal-card" onclick="toggleCard(this)">
+        <div class="animal-emoji-box" style="background:#e8f2f5;">🐢</div>
+        <div class="animal-info">
+          <div class="animal-name">Green Sea Turtle</div>
+          <div class="animal-diet">Chelonia mydas</div>
+        </div>
+        <div class="animal-panel"><div class="fun-fact">🔎 Fun Fact</div>Green sea turtles are the only herbivorous sea turtles. They feed on seagrass and algae, helping maintain healthy seagrass beds that support other marine life. They can live for over 80 years and travel thousands of kilometres to nest.</div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="animal-category">
+    <div class="category-header">
+      <span class="category-badge omni">Omnivores</span>
+      <div class="category-line"></div>
+    </div>
+    <div class="animals-grid">
+      <div class="animal-card" onclick="toggleCard(this)">
+        <div class="animal-emoji-box" style="background:#fdf0e0;">🐻</div>
+        <div class="animal-info">
+          <div class="animal-name">Brown Bear</div>
+          <div class="animal-diet">Ursus arctos</div>
+        </div>
+        <div class="animal-panel"><div class="fun-fact">🔎 Fun Fact</div>Brown bears eat both plants and animals — berries, roots, fish and small mammals. They hibernate during winter, surviving on fat reserves built up in autumn. A mother bear gives birth while hibernating and her cubs drink milk before she wakes up.</div>
+      </div>
+      <div class="animal-card" onclick="toggleCard(this)">
+        <div class="animal-emoji-box" style="background:#f0ece8;">🦝</div>
+        <div class="animal-info">
+          <div class="animal-name">Raccoon</div>
+          <div class="animal-diet">Procyon lotor</div>
+        </div>
+        <div class="animal-panel"><div class="fun-fact">🔎 Fun Fact</div>Raccoons are highly adaptable omnivores that eat fruits, insects, small animals and even garbage in urban areas. Their "hands" are remarkably dexterous — they can open jars, doors and latches. They are one of the few wild animals thriving in cities.</div>
+      </div>
+      <div class="animal-card" onclick="toggleCard(this)">
+        <div class="animal-emoji-box" style="background:#e8f0e8;">🐒</div>
+        <div class="animal-info">
+          <div class="animal-name">Chimpanzee</div>
+          <div class="animal-diet">Pan troglodytes</div>
+        </div>
+        <div class="animal-panel"><div class="fun-fact">🔎 Fun Fact</div>Chimpanzees share about 98.7% of their DNA with humans. They eat fruits, leaves, insects and occasionally hunt smaller monkeys. They are one of the few animals that make and use tools — crafting sticks to extract termites from mounds.</div>
+      </div>
+      <div class="animal-card" onclick="toggleCard(this)">
+        <div class="animal-emoji-box" style="background:#f5e8f0;">🦜</div>
+        <div class="animal-info">
+          <div class="animal-name">Macaw</div>
+          <div class="animal-diet">Ara macao</div>
+        </div>
+        <div class="animal-panel"><div class="fun-fact">🔎 Fun Fact</div>Macaws are highly intelligent omnivores that eat seeds, nuts, fruits, and sometimes clay from riverbanks — the clay helps neutralise toxins in their food. They can live for over 50 years. Deforestation threatens many macaw species in the Amazon.</div>
+      </div>
+      <div class="animal-card" onclick="toggleCard(this)">
+        <div class="animal-emoji-box" style="background:#e8e8f5;">🦔</div>
+        <div class="animal-info">
+          <div class="animal-name">Hedgehog</div>
+          <div class="animal-diet">Erinaceus europaeus</div>
+        </div>
+        <div class="animal-panel"><div class="fun-fact">🔎 Fun Fact</div>Hedgehogs eat insects, worms, frogs, berries and mushrooms. Their 5,000 to 7,000 spines are made of keratin (the same material as human nails). When threatened, they roll into a tight ball, exposing only their spines to predators.</div>
+      </div>
+      <div class="animal-card" onclick="toggleCard(this)">
+        <div class="animal-emoji-box" style="background:#f5f0e8;">🐗</div>
+        <div class="animal-info">
+          <div class="animal-name">Wild Boar</div>
+          <div class="animal-diet">Sus scrofa</div>
+        </div>
+        <div class="animal-panel"><div class="fun-fact">🔎 Fun Fact</div>Wild boars are highly adaptable and eat roots, tubers, insects, eggs, and carrion. Their rooting behaviour turns over soil, helping seeds germinate. They are one of the most widespread large mammals on Earth, found across Europe, Asia and Africa.</div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="animal-category">
+    <div class="category-header">
+      <span class="category-badge mamm">Mammals</span>
+      <div class="category-line"></div>
+    </div>
+    <div class="animals-grid">
+      <div class="animal-card" onclick="toggleCard(this)">
+        <div class="animal-emoji-box" style="background:#f0e8f5;">🦍</div>
+        <div class="animal-info">
+          <div class="animal-name">Mountain Gorilla</div>
+          <div class="animal-diet">Gorilla beringei beringei</div>
+        </div>
+        <div class="animal-panel"><div class="fun-fact">🔎 Fun Fact</div>Mountain gorillas live in the forests of central Africa and feed on bamboo, leaves and small insects. They live in groups called troops led by a silverback. Their young are called infants. There are only about 1,000 mountain gorillas left in the wild.</div>
+      </div>
+      <div class="animal-card" onclick="toggleCard(this)">
+        <div class="animal-emoji-box" style="background:#e8f0f5;">🐬</div>
+        <div class="animal-info">
+          <div class="animal-name">Bottlenose Dolphin</div>
+          <div class="animal-diet">Tursiops truncatus</div>
+        </div>
+        <div class="animal-panel"><div class="fun-fact">🔎 Fun Fact</div>Dolphins are highly social mammals that communicate using a complex system of clicks, whistles and body language. Each dolphin has a unique "signature whistle" — a name that other dolphins use to call it. They are among the most intelligent animals on Earth.</div>
+      </div>
+      <div class="animal-card" onclick="toggleCard(this)">
+        <div class="animal-emoji-box" style="background:#e8f5f0;">🦦</div>
+        <div class="animal-info">
+          <div class="animal-name">Sea Otter</div>
+          <div class="animal-diet">Enhydra lutris</div>
+        </div>
+        <div class="animal-panel"><div class="fun-fact">🔎 Fun Fact</div>Sea otters are a keystone species for kelp forest ecosystems. They eat sea urchins, which would otherwise destroy kelp forests. They hold hands while sleeping on water to avoid drifting apart — a behaviour called "rafting."</div>
+      </div>
+      <div class="animal-card" onclick="toggleCard(this)">
+        <div class="animal-emoji-box" style="background:#f5f5e8;">🦇</div>
+        <div class="animal-info">
+          <div class="animal-name">Fruit Bat</div>
+          <div class="animal-diet">Pteropus giganteus</div>
+        </div>
+        <div class="animal-panel"><div class="fun-fact">🔎 Fun Fact</div>Fruit bats are vital pollinators and seed dispersers in tropical forests. A single bat can disperse thousands of seeds per night, making them essential for forest regeneration. Without bats, many tropical trees could not reproduce.</div>
+      </div>
+      <div class="animal-card" onclick="toggleCard(this)">
+        <div class="animal-emoji-box" style="background:#fdf0e8;">🐅</div>
+        <div class="animal-info">
+          <div class="animal-name">Bengal Tiger</div>
+          <div class="animal-diet">Panthera tigris tigris</div>
+        </div>
+        <div class="animal-panel"><div class="fun-fact">🔎 Fun Fact</div>Bengal tigers are the most numerous tiger subspecies, yet fewer than 2,500 remain in the wild. They are solitary and territorial. Their stripes are like fingerprints — no two tigers have the same pattern. Habitat destruction is the main threat to their survival.</div>
+      </div>
+      <div class="animal-card" onclick="toggleCard(this)">
+        <div class="animal-emoji-box" style="background:#eef5e8;">🐨</div>
+        <div class="animal-info">
+          <div class="animal-name">Koala</div>
+          <div class="animal-diet">Phascolarctos cinereus</div>
+        </div>
+        <div class="animal-panel"><div class="fun-fact">🔎 Fun Fact</div>Koalas are marsupials that feed almost exclusively on eucalyptus leaves, which are toxic to most other animals. They sleep up to 22 hours a day to conserve energy. Australia's 2019–2020 bushfires burned the habitat of an estimated 60,000 koalas.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<hr class="section-divider">
+
+
+<section id="article1" class="article-section">
+<div class="page-section">
+  <div class="article-header">
+    <p class="section-label">Page 2</p>
+    <span class="grammar-tag">Present Simple — Informative Article</span>
+    <h2 class="article-title">Wild Animals and Their Habitats</h2>
+    <p class="article-byline">Our Changing World Magazine · Environmental Correspondent</p>
+  </div>
+
+  <p class="article-lead">Every creature on Earth <strong>depends</strong> on its habitat. When that habitat disappears, the entire web of life around it <strong>begins</strong> to unravel.</p>
+
+
+  <div class="interactive-card">
+    <div class="img-placeholder" style="background:linear-gradient(135deg,#1b4332,#2d6a4f);" onclick="togglePanel(this)">
+      <span>🌿</span>
+      <span class="img-label">Earth's Major Biomes</span>
+      <span class="img-click-hint">Click to reveal data</span>
+    </div>
+    <div class="img-data-panel">
+      <div class="data-row">
+        <div class="data-num">71%</div>
+        <div class="data-label">of Earth's surface is covered by ocean — the world's largest habitat</div>
+      </div>
+      <div class="data-row">
+        <div class="data-num">31%</div>
+        <div class="data-label">of Earth's land surface is covered by forests</div>
+      </div>
+      <div class="data-bar-wrap">
+        <div class="data-bar-label"><span>Tropical rainforests</span><span>10% of Earth</span></div>
+        <div class="data-bar-track"><div class="data-bar-fill" style="width:0" data-width="10"></div></div>
+      </div>
+      <div class="data-bar-wrap">
+        <div class="data-bar-label"><span>Grasslands &amp; savannahs</span><span>20% of Earth</span></div>
+        <div class="data-bar-track"><div class="data-bar-fill" style="width:0" data-width="20"></div></div>
+      </div>
+      <div class="data-bar-wrap">
+        <div class="data-bar-label"><span>Deserts</span><span>33% of land</span></div>
+        <div class="data-bar-track"><div class="data-bar-fill" style="width:0" data-width="33"></div></div>
+      </div>
+      <p style="font-family:'DM Sans',sans-serif;font-size:12px;color:var(--ink-muted);margin-top:0.75rem;">Source: WWF Living Planet Report 2022</p>
+    </div>
+  </div>
+
+  <div class="article-body">
+    <p>Wild animals <strong>live</strong> in many different habitats around the world. A <span class="vocab-word" title="The natural home where an organism lives and gets what it needs to survive">habitat</span> <strong>is</strong> the natural home of an animal or plant. Forests, deserts, oceans, grasslands, and mountains <strong>are</strong> examples of habitats. Each habitat <strong>provides</strong> food, water, shelter, and space for animals to survive.</p>
+
+    <p>In forests, animals like monkeys, birds, and jaguars <strong>find</strong> trees for protection and fruits for food. In deserts, animals such as camels and snakes <strong>survive</strong> with very little water. Camels <strong>store</strong> fat — not water — in their humps, which gives them energy during long journeys across the sand. In oceans, whales, fish, and sea turtles <strong>live</strong> in salt water and <strong>depend</strong> on clean water to stay healthy. Every animal <strong>adapts</strong> to its environment in special ways.</p>
+
+    <h3>The Role of Each Species</h3>
+    <p>Scientists <strong>call</strong> some animals "keystone species" because their presence <strong>keeps</strong> the ecosystem in balance. When wolves <strong>hunt</strong> deer in forests, for example, deer populations <strong>stay</strong> under control and plants <strong>grow</strong> back. When sea otters <strong>eat</strong> sea urchins, kelp forests <strong>survive</strong> and <strong>provide</strong> homes for hundreds of marine species.</p>
+
+    <div class="pullquote">"Every living thing is part of a network. Pull one thread out, and the whole fabric begins to fray."</div>
+
+    <h3>Threats to Natural Habitats</h3>
+    <p>However, many habitats <strong>face</strong> serious problems. People <strong>cut</strong> down trees, <strong>pollute</strong> rivers, and <strong>build</strong> cities where animals live. These actions <strong>destroy</strong> natural homes and <strong>reduce</strong> food sources. As a result, some species <strong>become</strong> endangered. According to the IUCN Red List, more than 42,000 species currently <strong>face</strong> the threat of extinction.</p>
+
+    <p>Climate change also <strong>affects</strong> wildlife. Higher temperatures <strong>change</strong> weather patterns and <strong>damage</strong> ecosystems. For example, melting ice in cold regions <strong>affects</strong> animals that <strong>depend</strong> on icy environments. Polar bears <strong>need</strong> sea ice to hunt seals. When the ice <strong>melts</strong> too early, the bears <strong>go</strong> hungry.</p>
+
+    <h3>What We Can Do</h3>
+    <p>Protecting habitats <strong>is</strong> essential. People can recycle, save energy, and reduce plastic use. Schools <strong>teach</strong> students about conservation, and communities <strong>organise</strong> clean-up campaigns. When people <strong>respect</strong> nature, wild animals <strong>have</strong> a better chance to survive.</p>
+  </div>
+</div>
+</section>
+
+<hr class="section-divider">
+
+
+<section id="article2" class="article-section alt">
+<div class="page-section">
+  <div class="article-header">
+    <p class="section-label">Page 3</p>
+    <span class="grammar-tag past">Simple Past — Narrative of Environmental Change</span>
+    <h2 class="article-title">When the Forests Fell Silent</h2>
+    <p class="article-byline">A Narrative of Past Environmental Change · The Amazon, 1970–2010</p>
+  </div>
+
+  <p class="article-lead">For thousands of years, the Amazon rainforest <strong>stood</strong> as the lungs of the planet. Then, in the second half of the 20th century, the chainsaws <strong>arrived</strong>.</p>
+
+  <!-- INTERACTIVE IMAGE 2 -->
+  <div class="interactive-card">
+    <div class="img-placeholder" style="background:linear-gradient(135deg,#7a2e0e,#b5451b);" onclick="togglePanel(this)">
+      <span>🌳</span>
+      <span class="img-label">Amazon Deforestation Data</span>
+      <span class="img-click-hint">Click to reveal data</span>
+    </div>
+    <div class="img-data-panel">
+      <div class="data-row">
+        <div class="data-num" style="color:var(--amber);">17%</div>
+        <div class="data-label">of the Amazon has been deforested since the 1970s — an area larger than France</div>
+      </div>
+      <div class="data-row">
+        <div class="data-num" style="color:var(--amber);">1M</div>
+        <div class="data-label">species lived in the Amazon. Scientists estimated thousands went extinct before they were even discovered.</div>
+      </div>
+      <div class="data-bar-wrap">
+        <div class="data-bar-label"><span>Forest lost 1970–2000</span><span>~600,000 km²</span></div>
+        <div class="data-bar-track"><div class="data-bar-fill" style="width:0;background:var(--amber);" data-width="60"></div></div>
+      </div>
+      <div class="data-bar-wrap">
+        <div class="data-bar-label"><span>Forest lost 2000–2020</span><span>~400,000 km²</span></div>
+        <div class="data-bar-track"><div class="data-bar-fill" style="width:0;background:var(--amber);" data-width="40"></div></div>
+      </div>
+      <p style="font-family:'DM Sans',sans-serif;font-size:12px;color:var(--ink-muted);margin-top:0.75rem;">Source: Brazil's INPE (National Institute for Space Research)</p>
+    </div>
+  </div>
+
+  <div class="article-body">
+    <p>In the 1960s, the Brazilian government <strong>decided</strong> to open the Amazon to development. They <strong>built</strong> roads deep into the rainforest and <strong>offered</strong> land to settlers. Thousands of families <strong>moved</strong> to the region and <strong>cleared</strong> vast areas of forest to plant crops and raise cattle.</p>
+
+    <p>The consequences <strong>were</strong> immediate and devastating. Jaguars <strong>lost</strong> their hunting grounds and <strong>disappeared</strong> from large areas. Tapirs and giant anteaters <strong>fled</strong> deeper into the remaining forest. Fish populations in rivers <strong>declined</strong> as trees that once <strong>shaded</strong> and <strong>cooled</strong> the water <strong>vanished</strong>.</p>
+
+    <h3>Indigenous Communities Paid the Highest Price</h3>
+    <p>Indigenous peoples who <strong>had lived</strong> in the Amazon for millennia <strong>saw</strong> their territories invaded. Miners and loggers <strong>brought</strong> diseases to isolated communities. Some groups <strong>disappeared</strong> entirely. Their languages, knowledge of medicinal plants, and traditions <strong>died</strong> with them — a cultural extinction alongside the biological one.</p>
+
+    <div class="pullquote">"They burned the trees. They burned the knowledge. They burned the future."<br><em style="font-size:0.75em">— Environmental activist, Kayapó Nation</em></div>
+
+    <h3>A Turning Point</h3>
+    <p>In 1988, activist Chico Mendes <strong>was assassinated</strong> after years of fighting to protect the forest. His death <strong>shocked</strong> the world and <strong>brought</strong> global attention to the Amazon's destruction. International pressure <strong>grew</strong>. Brazil <strong>created</strong> protected reserves and conservation agencies. Deforestation rates <strong>dropped</strong> significantly between 2004 and 2012 — proving that action <strong>worked</strong> when governments <strong>committed</strong> to it.</p>
+
+    <p>The Amazon <strong>did not</strong> recover fully. But the forests that <strong>remained</strong> <strong>continued</strong> to shelter millions of species. Scientists <strong>discovered</strong> new species every year. Hope <strong>returned</strong> — cautiously — to the hearts of conservationists who <strong>refused</strong> to give up.</p>
+  </div>
+</div>
+</section>
+
+<hr class="section-divider">
+
+
+<section id="article3" class="article-section">
+<div class="page-section">
+  <div class="article-header">
+    <p class="section-label">Page 4</p>
+    <span class="grammar-tag cont">Past Continuous + when/while — Ongoing Event</span>
+    <h2 class="article-title">While the Ice Was Melting</h2>
+    <p class="article-byline">The Arctic Crisis and Its Wildlife · An Ongoing Emergency</p>
+  </div>
+
+  <p class="article-lead">Scientists <strong>were monitoring</strong> Arctic temperatures when they recorded the most alarming readings in human history. <strong>While</strong> the world <strong>was sleeping</strong>, the ice <strong>was disappearing</strong>.</p>
+
+  <!-- INTERACTIVE IMAGE 3 -->
+  <div class="interactive-card">
+    <div class="img-placeholder" style="background:linear-gradient(135deg,#0c447c,#185fa5);" onclick="togglePanel(this)">
+      <span>🧊</span>
+      <span class="img-label">Arctic Sea Ice Loss — Interactive</span>
+      <span class="img-click-hint">Click to reveal data</span>
+    </div>
+    <div class="img-data-panel">
+      <div class="data-row">
+        <div class="data-num" style="color:#185fa5;">-13%</div>
+        <div class="data-label">Arctic sea ice is declining by approximately 13% per decade, relative to the 1981–2010 average</div>
+      </div>
+      <div class="data-row">
+        <div class="data-num" style="color:#185fa5;">4°C</div>
+        <div class="data-label">The Arctic is warming at nearly 4 times the global average rate</div>
+      </div>
+      <div class="data-bar-wrap">
+        <div class="data-bar-label"><span>Polar bear population at risk</span><span>~26,000 total</span></div>
+        <div class="data-bar-track"><div class="data-bar-fill" style="width:0;background:#185fa5;" data-width="75"></div></div>
+      </div>
+      <div class="data-bar-wrap">
+        <div class="data-bar-label"><span>Walrus habitat loss</span><span>Severe</span></div>
+        <div class="data-bar-track"><div class="data-bar-fill" style="width:0;background:#185fa5;" data-width="65"></div></div>
+      </div>
+      <p style="font-family:'DM Sans',sans-serif;font-size:12px;color:var(--ink-muted);margin-top:0.75rem;">Source: NSIDC (National Snow and Ice Data Center) · NASA</p>
+    </div>
+  </div>
+
+  <div class="article-body">
+    <p>In the summer of 2019, researchers <strong>were conducting</strong> their annual survey of polar bear populations on Hudson Bay <strong>when</strong> they noticed something deeply troubling. The bears <strong>were arriving</strong> at the coast much earlier than usual — not because spring <strong>was coming</strong> early, but because the sea ice <strong>was breaking up</strong> weeks ahead of schedule. Without ice, the bears could not hunt seals. They <strong>were starving</strong>.</p>
+
+    <p><strong>While</strong> polar bears <strong>were struggling</strong> to find food, walruses <strong>were facing</strong> their own crisis. Traditionally, walruses <strong>were resting</strong> on sea ice between feeding dives. <strong>When</strong> that ice disappeared, tens of thousands of walruses <strong>were crowding</strong> onto narrow beaches in Russia and Alaska — a phenomenon scientists had never seen before.</p>
+
+    <h3>A Cascade of Consequences</h3>
+    <p><strong>While</strong> scientists <strong>were documenting</strong> these events, other changes <strong>were unfolding</strong> across the ecosystem. Arctic foxes <strong>were competing</strong> with red foxes, which <strong>were moving</strong> north into previously frozen territory. Plankton blooms <strong>were shifting</strong> earlier in the season, disrupting the timing of fish migrations. The entire food web <strong>was reorganising</strong> itself in real time.</p>
+
+    <div class="pullquote">"While we were debating policies, the animals were already adapting — or failing to."<br><em style="font-size:0.75em">— Dr. Ian Stirling, polar bear biologist</em></div>
+
+    <h3>The Human Dimension</h3>
+    <p>Indigenous communities of the Arctic — Inuit, Yupik, and Inupiaq peoples — <strong>were watching</strong> their world transform <strong>when</strong> climate reports <strong>were confirming</strong> what their elders already knew. The ice <strong>was behaving</strong> differently. Animals <strong>were moving</strong>. The knowledge passed down for generations <strong>was becoming</strong> unreliable for the first time. They <strong>were losing</strong> not just food sources, but their entire relationship with the land.</p>
+
+    <p>The crisis <strong>was unfolding</strong> at remarkable speed. Scientists <strong>were revising</strong> their projections every few years, each revision more alarming than the last. <strong>While</strong> negotiations at international climate conferences <strong>were continuing</strong>, the Arctic summer ice <strong>was shrinking</strong> toward its lowest recorded extent.</p>
+  </div>
+</div>
+</section>
+
+<hr class="section-divider">
+
+
+<section id="opinion" class="article-section opinion-section">
+<div class="page-section">
+  <div class="article-header">
+    <p class="section-label">Page 5 — Opinion Column</p>
+    <span class="grammar-tag stative">Stative Verbs — Opinion Column</span>
+    <h2 class="article-title" style="color:white;">We Owe This Planet a Debt</h2>
+    <p class="article-byline" style="color:rgba(255,255,255,0.5);">Opinion · Wild Futures Editorial Board</p>
+  </div>
+
+  <p class="article-lead">I <strong>believe</strong> that humanity <strong>understands</strong>, at some deep level, what it is doing to the natural world. The question <strong>is</strong> not one of knowledge. It <strong>is</strong> one of will.</p>
+
+  <!-- INTERACTIVE IMAGE 4 -->
+  <div class="interactive-card" style="border-color:rgba(255,255,255,0.15);">
+    <div class="img-placeholder" style="background:linear-gradient(135deg,#04342c,#0f6e56);" onclick="togglePanel(this)">
+      <span>🌍</span>
+      <span class="img-label">Global Biodiversity — Key Facts</span>
+      <span class="img-click-hint">Click to reveal data</span>
+    </div>
+    <div class="img-data-panel" style="background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.1);">
+      <div class="data-row">
+        <div class="data-num" style="color:var(--green-light);">1M</div>
+        <div class="data-label" style="color:rgba(0, 0, 0, 0.75);">species face extinction, according to the IPBES 2019 Global Assessment</div>
+      </div>
+      <div class="data-row">
+        <div class="data-num" style="color:var(--green-light);">68%</div>
+        <div class="data-label" style="color:rgba(0, 0, 0, 0.75);">average decline in vertebrate populations since 1970 (WWF Living Planet Index)</div>
+      </div>
+      <div class="data-bar-wrap">
+        <div class="data-bar-label" style="color:rgba(0, 0, 0, 0.55);"><span>Species assessed as threatened</span><span>28% of all known species</span></div>
+        <div class="data-bar-track" style="background:rgba(0, 0, 0, 0.1);"><div class="data-bar-fill" style="width:0;background:var(--green-light);" data-width="28"></div></div>
+      </div>
+      <a href="https://www.iucnredlist.org" target="_blank" class="panel-btn" style="border-color:var(--green-light);color:var(--green-light);">IUCN Red List →</a>
+    </div>
+  </div>
+
+  <div class="article-body">
+    <p>I <strong>know</strong> what the data says. Every serious scientist <strong>agrees</strong> that we are living through the sixth mass extinction event in Earth's history — and unlike the previous five, this one <strong>has</strong> a single cause: us. We <strong>seem</strong> to understand this intellectually, and yet the destruction continues.</p>
+
+    <p>I <strong>think</strong> the problem <strong>lies</strong> in distance. Most people in wealthy nations <strong>do not see</strong> a jaguar. They <strong>do not hear</strong> the silence where a forest once stood. They <strong>don't feel</strong> the emptiness of a reef bleached white. The suffering <strong>seems</strong> remote — something that <strong>belongs</strong> to television documentaries, not daily life.</p>
+
+    <h3>What We Owe</h3>
+    <p>But I <strong>believe</strong> that every species that disappears <strong>takes</strong> something irreplaceable from the world. It <strong>is</strong> not just a matter of ecology — though the ecological cost <strong>is</strong> enormous. It <strong>is</strong> a matter of something harder to measure: wonder. When a child <strong>knows</strong> there are no more tigers, something <strong>changes</strong> in how they <strong>see</strong> the world. The world <strong>becomes</strong> smaller, less astonishing, more ordinary.</p>
+
+    <div class="pullquote">"We <strong>do not</strong> inherit the Earth from our ancestors — we <strong>borrow</strong> it from our children."<br><em style="font-size:0.75em">— Antoine de Saint-Exupéry (attrib.)</em></div>
+
+    <h3>Reasons for Hope</h3>
+    <p>I <strong>see</strong> reasons for cautious hope, however. I <strong>notice</strong> that young people across the world <strong>care</strong> deeply about environmental protection. They <strong>understand</strong> the science. They <strong>want</strong> change. Governments that once <strong>seemed</strong> indifferent now <strong>feel</strong> genuine pressure from their citizens.</p>
+
+    <p>I <strong>believe</strong> — and I <strong>want</strong> to be honest that this <strong>is</strong> a belief, not a certainty — that we still <strong>have</strong> time. The wolves of Yellowstone came back. The bison of the Great Plains recovered. The Amur tiger <strong>seems</strong> to be stabilising. Nature, it <strong>appears</strong>, <strong>wants</strong> to survive. It only <strong>needs</strong> us to stop standing in the way.</p>
+
+    <p>We <strong>owe</strong> this planet an enormous debt. The question <strong>is</strong> whether we <strong>have</strong> the wisdom — and the courage — to pay it.</p>
+  </div>
+</div>
+</section>
+
+<hr class="section-divider">
+<section id="webgraphy" class="webgraphy-section">
+<div class="page-section">
+  <p class="section-label">References</p>
+  <h2 class="section-title">Webgraphy</h2>
+  <p style="font-family:'DM Sans',sans-serif;font-size:14px;color:var(--ink-muted);margin-bottom:2rem;">All sources consulted for the production of this magazine. Organised by theme and institutional authority.</p>
+
+  <ol class="ref-list">
+    <li class="ref-item">
+      <div class="ref-num">1</div>
+      <div class="ref-content">
+        <div class="ref-title">IPCC Sixth Assessment Report — Impacts, Adaptation and Vulnerability</div>
+        <div class="ref-org">Intergovernmental Panel on Climate Change (IPCC) · 2022</div>
+        <div class="ref-org">Comprehensive scientific report on climate change effects on biodiversity and ecosystems worldwide.</div>
+        <a class="ref-url" href="https://www.ipcc.ch/report/ar6/wg2/" target="_blank">https://www.ipcc.ch/report/ar6/wg2/</a>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">2</div>
+      <div class="ref-content">
+        <div class="ref-title">IUCN Red List of Threatened Species</div>
+        <div class="ref-org">International Union for Conservation of Nature (IUCN) · Updated 2024</div>
+        <div class="ref-org">The world's most comprehensive inventory of the conservation status of biological species.</div>
+        <a class="ref-url" href="https://www.iucnredlist.org" target="_blank">https://www.iucnredlist.org</a>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">3</div>
+      <div class="ref-content">
+        <div class="ref-title">Living Planet Report 2022 — Building a Nature-Positive Society</div>
+        <div class="ref-org">World Wildlife Fund (WWF) · 2022</div>
+        <div class="ref-org">Tracks trends in global biodiversity and the health of ecosystems through the Living Planet Index.</div>
+        <a class="ref-url" href="https://www.worldwildlife.org/pages/living-planet-report-2022" target="_blank">https://www.worldwildlife.org/pages/living-planet-report-2022</a>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">4</div>
+      <div class="ref-content">
+        <div class="ref-title">Global Assessment Report on Biodiversity and Ecosystem Services</div>
+        <div class="ref-org">Intergovernmental Science-Policy Platform on Biodiversity and Ecosystem Services (IPBES) · 2019</div>
+        <div class="ref-org">Landmark report warning that one million species face extinction due to human activity.</div>
+        <a class="ref-url" href="https://ipbes.net/global-assessment" target="_blank">https://ipbes.net/global-assessment</a>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">5</div>
+      <div class="ref-content">
+        <div class="ref-title">Arctic Sea Ice News and Analysis</div>
+        <div class="ref-org">National Snow and Ice Data Center (NSIDC) · Continuously updated</div>
+        <div class="ref-org">Monthly updates and long-term data on Arctic and Antarctic sea ice extent, with historical comparisons.</div>
+        <a class="ref-url" href="https://nsidc.org/arcticseaicenews/" target="_blank">https://nsidc.org/arcticseaicenews/</a>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">6</div>
+      <div class="ref-content">
+        <div class="ref-title">Amazon Deforestation Monitoring — PRODES System</div>
+        <div class="ref-org">Instituto Nacional de Pesquisas Espaciais — INPE (Brazil) · 2024</div>
+        <div class="ref-org">Brazil's official satellite-based monitoring system for Amazon deforestation. Primary data source for rates cited in this magazine.</div>
+        <a class="ref-url" href="https://www.inpe.br/programas/amazonia-monitoramento/" target="_blank">https://www.inpe.br/programas/amazonia-monitoramento/</a>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">7</div>
+      <div class="ref-content">
+        <div class="ref-title">Climate Change and Wildlife — NASA Earth Observatory</div>
+        <div class="ref-org">NASA (National Aeronautics and Space Administration) · Continuously updated</div>
+        <div class="ref-org">Satellite imagery and scientific articles on climate change impacts on habitats and animal populations.</div>
+        <a class="ref-url" href="https://earthobservatory.nasa.gov/topics/biosphere" target="_blank">https://earthobservatory.nasa.gov/topics/biosphere</a>
+      </div>
+    </li>
+    <li class="ref-item">
+      <div class="ref-num">8</div>
+      <div class="ref-content">
+        <div class="ref-title">Education for Sustainable Development — Biodiversity Curriculum Resources</div>
+        <div class="ref-org">UNESCO (United Nations Educational, Scientific and Cultural Organization) · 2021</div>
+        <div class="ref-org">Educational frameworks and resources for teaching environmental sustainability and biodiversity in secondary schools.</div>
+        <a class="ref-url" href="https://en.unesco.org/themes/education-sustainable-development" target="_blank">https://en.unesco.org/themes/education-sustainable-development</a>
+      </div>
+    </li>
+  </ol>
+</div>
+</section>
+
+
+<hr class="section-divider">
+
+
+<section id="conclusion" class="article-section">
+<div class="page-section">
+  <div class="article-header">
+    <p class="section-label">Final Section</p>
+    <h2 class="article-title">Conclusion</h2>
+  </div>
+
+  <div class="article-body">
+    <p>
+      In conclusion, our planet is experiencing rapid environmental changes that affect all living beings.
+      From deforestation to climate change, human actions have transformed ecosystems and endangered countless species.
+      However, there is still hope. By becoming more aware, making responsible decisions, and protecting nature,
+      we can help preserve the balance of life on Earth.
+    </p>
+
+    <p>
+      To better understand this global issue, watch the following video:
+    </p>
+
+
+    <a href="https://youtu.be/KrDcAAosFV0" target="_blank" class="panel-btn">
+      Watch Video →
+    </a>
+  </div>
+</div>
+</section>
+
+<footer class="footer">
+  <p>Proyecto de ingles    Tomas Delgadillo  10-4</p>
+</footer>
+
+<script>
+function toggleCard(card) {
+  const wasOpen = card.classList.contains('open');
+  document.querySelectorAll('.animal-card').forEach(c => c.classList.remove('open'));
+  if (!wasOpen) card.classList.add('open');
+}
+
+function togglePanel(placeholder) {
+  const card = placeholder.closest('.interactive-card');
+  const panel = card.querySelector('.img-data-panel');
+  const isOpen = panel.classList.contains('open');
+  panel.classList.toggle('open');
+  if (!isOpen) {
+    setTimeout(() => {
+      panel.querySelectorAll('.data-bar-fill').forEach(bar => {
+        bar.style.width = bar.dataset.width + '%';
+      });
+    }, 80);
+  } else {
+    panel.querySelectorAll('.data-bar-fill').forEach(bar => {
+      bar.style.width = '0';
+    });
+  }
+}
+</script>
+
+</body>
+</html>
